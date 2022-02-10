@@ -1,13 +1,20 @@
 import express from "express";
 import mongoose from "mongoose";
 import User from "../models/user.js";
+import validator from "validator";
 
 //ENTER DETAILS
 export const createUser = async (req, res) => {
   try {
-    // console.log(req.files.originalname);
+    const { rollno, emailid } = req.headers;
+    const isEmail = validator.isEmail(emailid);
+
+    if (!isEmail) {
+      return res.status(400).json("enter valid email id");
+    }
+
     const { name, age, college, mobileNumber } = req.body;
-    if (!name | !age | !college | !mobileNumber) {
+    if (!name | !age | !college | !mobileNumber | !rollno | !emailid) {
       return res.status(400).json("Fill all the required fields");
     }
     if (mobileNumber.length > 10 || mobileNumber.length < 10) {
@@ -29,9 +36,11 @@ export const createUser = async (req, res) => {
       college,
       documents,
       mobileNumber,
+      emailID: emailid,
+      rollNO: rollno,
     });
     await user.save();
-    res.status(200).json({ userID: user._id });
+    res.status(200).json("Details submitted successfully!!");
   } catch (err) {
     res.status(400).json(err.message);
   }

@@ -20,10 +20,16 @@ const userSchema = new mongoose.Schema(
     ],
     mobileNumber: {
       type: Number,
-      minlength: 10,
-      maxlength: 10,
+      required: true,
+    },
+    rollNO:{
+      type:Number,
       required:true
     },
+    emailID:{
+      type:String,
+      required:true
+    }
   },
   { timestamps: true }
 );
