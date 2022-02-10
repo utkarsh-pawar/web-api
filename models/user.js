@@ -18,6 +18,12 @@ const userSchema = new mongoose.Schema(
         type: String,
       },
     ],
+    mobileNumber: {
+      type: Number,
+      minlength: 10,
+      maxlength: 10,
+      required:true
+    },
   },
   { timestamps: true }
 );
