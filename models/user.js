@@ -22,14 +22,18 @@ const userSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    rollNO:{
-      type:Number,
-      required:true
+    rollNO: {
+      type: Number,
+      required: true,
     },
-    emailID:{
-      type:String,
-      required:true
-    }
+    emailID: {
+      type: String,
+      required: true,
+    },
+    githubLink: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );

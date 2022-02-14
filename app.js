@@ -16,12 +16,24 @@ app.use(cors());
 const PORT = process.env.PORT || 5000;
 
 app.get("/", (req, res) => {
-  res.status(200).json("hello world");
+  res.status(200).json("Welcome!!");
 });
 
-mongoose.connect(process.env.MONGO_URI, () => {
-  console.log("connected to database");
-});
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => {
+    console.log("connected to database");
+  })
+  .catch((err) => console.log(err.message));
+
+//document submission  =>POST to  https://custom-web-api.herokuapp.com/api/v1/users -
+// post multipart/post-data - name - string,
+//                            age-number,
+//                            college-string,
+//                            documents- any type,
+//                            mobilenumber-valid mobile number
+//               as headers - rollno- number,
+//                            emailid-string
 
 app.use("/api/v1/users", userRoute);
 

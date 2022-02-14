@@ -13,8 +13,16 @@ export const createUser = async (req, res) => {
       return res.status(400).json("enter valid email id");
     }
 
-    const { name, age, college, mobileNumber } = req.body;
-    if (!name | !age | !college | !mobileNumber | !rollno | !emailid) {
+    const { name, age, college, mobileNumber, githubLink } = req.body;
+    if (
+      !name ||
+      !age ||
+      !college ||
+      !mobileNumber ||
+      !rollno ||
+      !emailid ||
+      !githubLink
+    ) {
       return res.status(400).json("Fill all the required fields");
     }
     if (mobileNumber.length > 10 || mobileNumber.length < 10) {
@@ -38,6 +46,7 @@ export const createUser = async (req, res) => {
       mobileNumber,
       emailID: emailid,
       rollNO: rollno,
+      githubLink: githubLink,
     });
     await user.save();
     res.status(200).json("Details submitted successfully!!");
