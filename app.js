@@ -16,7 +16,7 @@ app.use(cors());
 const PORT = process.env.PORT || 5000;
 
 app.get("/", (req, res) => {
-  res.status(200).json("Welcome!!");
+  res.status(200).json("Welcome!!, post to https://custom-web-api.herokuapp.com/api/v1/users ");
 });
 
 mongoose
